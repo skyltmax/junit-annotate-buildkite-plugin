@@ -20,6 +20,8 @@ configuration:
       type: string
     report-slowest:
       type: integer
+    skip-checkout:
+      type: boolean
   required:
     - artifacts
   additionalProperties: false
