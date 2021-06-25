@@ -1,0 +1,31 @@
+{
+  "files.watcherExclude": {
+    "**/.git/objects/**": true
+  },
+  "files.associations": {
+    "*.rb.erb": "ruby"
+  },
+  "editor.tabSize": 2,
+  "editor.rulers": [120],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "emmet.includeLanguages": {
+    "html": "html",
+    "erb": "erb"
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true
+  },
+  "[ruby]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "castwide.solargraph"
+  },
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true
+}

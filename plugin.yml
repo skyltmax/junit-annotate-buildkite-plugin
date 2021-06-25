@@ -22,6 +22,8 @@ configuration:
       type: integer
     skip-checkout:
       type: boolean
+    skip-message:
+      type: boolean
   required:
     - artifacts
   additionalProperties: false
