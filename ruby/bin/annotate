@@ -102,7 +102,9 @@ summary.push("no failures") if failures_count == 0 && errors_count == 0
 summary[-1] = "and #{summary[-1]}" if summary.length > 2
 summary = summary.length > 2 ? summary.join(", ") : summary.join(" and ")
 
-puts "**#{summary}:**\n\n"
+colon = failures_count > 0 || errors_count > 0 || report_slowest > 0 ? ":" : ""
+
+puts "**#{summary}#{colon}**\n\n"
 
 failures.each do |failure|
   puts "<details>"

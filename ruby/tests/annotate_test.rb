@@ -12,7 +12,7 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       8 testcases found
       There were no failures/errors 🙌
-      **8 testcases and no failures:**\n
+      **8 testcases and no failures**\n
     OUTPUT
 
     assert_equal 0, status.exitstatus
