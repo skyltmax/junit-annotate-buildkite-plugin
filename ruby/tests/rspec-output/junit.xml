@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rspec" tests="1" skipped="0" failures="1" errors="0" time="0.244331" timestamp="2021-06-26T17:08:39+03:00" hostname="AURORA">
+<properties>
+<property name="seed" value="48632"/>
+</properties>
+<testcase classname="spec.services.order_confirmer_spec" name="OrderConfirmer returns correct PayPal notify_url" file="./spec/services/order_confirmer_spec.rb" time="0.243383"><failure message="
+expected: &quot;/order/paypa_notify?utm_nooverride=1&quot;
+     got: &quot;/order/paypal_notify?utm_nooverride=1&quot;
+
+(compared using ==)
+" type="RSpec::Expectations::ExpectationNotMetError">
+<![CDATA[ Failure/Error: [0m[32mexpect[0m(result[[33m:result[0m][[33m:data[0m][[31m[1;31m"[0m[31mtransactions[1;31m"[0m[31m[0m][[1;34m0[0m][[31m[1;31m"[0m[31mnotify_url[1;31m"[0m[31m[0m]).to eq([31m[1;31m"[0m[31m/order/paypa_notify?utm_nooverride=1[1;31m"[0m[31m[0m)
+
+expected: "/order/paypa_notify?utm_nooverride=1"
+      got: "/order/paypal_notify?utm_nooverride=1"
+
+(compared using ==)
+./spec/services/order_confirmer_spec.rb:22:in `block (2 levels) in <main>' ]]>
+</failure></testcase>
+</testsuite>

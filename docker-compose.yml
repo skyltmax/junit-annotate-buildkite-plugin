@@ -7,7 +7,7 @@ services:
     depends_on:
       - ruby
   ruby:
-    image: ruby:3.0-alpine@sha256:34610e32e014e1f187646e6311690bba94bc5ca8779ea17c42e919c1c8f8adf9
+    image: 349414613217.dkr.ecr.eu-central-1.amazonaws.com/junit-annotate:latest@sha256:187574ffdba0fcbfc725dc8dbf92cfba300aee9576130ac95d6c79bb3a5f6707
     command: rake
     working_dir: /src
     volumes:

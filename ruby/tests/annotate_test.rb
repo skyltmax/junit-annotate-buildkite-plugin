@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "minitest/autorun"
 require "open3"
 
@@ -12,7 +14,19 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       8 testcases found
       There were no failures/errors 🙌
-      **8 testcases and no failures**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      </table>
+      <br>
     OUTPUT
 
     assert_equal 0, status.exitstatus
@@ -28,9 +42,21 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       6 testcases found
       There are 4 failures/errors 😭
-      **6 testcases and 4 failures:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>4</td>
+        <td>0</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -44,7 +70,7 @@ describe "Junit annotate plugin parser" do
       ./spec/support/log.rb:66:in `block (2 levels) in &lt;top (required)&gt;&#39;</code></pre>\n
       </details>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -59,7 +85,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -74,7 +100,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -102,9 +128,21 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       6 testcases found
       There are 4 failures/errors 😭
-      **6 testcases, 2 failures, and 2 errors:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -118,7 +156,7 @@ describe "Junit annotate plugin parser" do
       ./spec/support/log.rb:66:in `block (2 levels) in &lt;top (required)&gt;&#39;</code></pre>\n
       </details>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -133,7 +171,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -148,7 +186,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -175,9 +213,21 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       2 testcases found
       There is 1 failure/error 😭
-      **2 testcases and 1 failure:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -207,9 +257,21 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       6 testcases found
       There are 4 failures/errors 😭
-      **6 testcases, 2 failures, and 2 errors:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>./spec/models/account_spec.rb: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">./spec/models/account_spec.rb:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -223,7 +285,7 @@ describe "Junit annotate plugin parser" do
       ./spec/support/log.rb:66:in `block (2 levels) in &lt;top (required)&gt;&#39;</code></pre>\n
       </details>
       <details>
-      <summary><code>./spec/models/account_spec.rb: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">./spec/models/account_spec.rb:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -238,7 +300,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>./spec/models/account_spec.rb: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">./spec/models/account_spec.rb:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -253,7 +315,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>./spec/models/account_spec.rb: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">./spec/models/account_spec.rb:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -281,9 +343,21 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       6 testcases found
       There are 4 failures/errors 😭
-      **6 testcases and 4 failures:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>4</td>
+        <td>0</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -297,7 +371,7 @@ describe "Junit annotate plugin parser" do
       ./spec/support/log.rb:66:in `block (2 levels) in &lt;top (required)&gt;&#39;</code></pre>\n
       </details>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -312,7 +386,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 700 if the account is XYZ</code></summary>\n
       <p>expected: 700 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -327,7 +401,7 @@ describe "Junit annotate plugin parser" do
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>Failure/Error: expect(account.maximum_jobs_added_by_pipeline_changer).to eql(250)
 
@@ -353,9 +427,21 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       2 testcases found
       There is 1 failure/error 😭
-      **2 testcases and 1 failure:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       </details>
     OUTPUT
@@ -371,17 +457,29 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       4 testcases found
       There are 3 failures/errors 😭
-      **4 testcases, 1 failure, and 2 errors:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 100 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 100 by default</code></summary>\n
       </details>
 
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 50 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 50 by default</code></summary>\n
       </details>
     OUTPUT
 
@@ -396,12 +494,68 @@ describe "Junit annotate plugin parser" do
       --- ✍️ Preparing annotation
       2 testcases found
       There is 1 failure/error 😭
-      **2 testcases and 1 error:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+      </table>
+      <br>
       <details>
-      <summary><code>spec.models.account_spec: Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
+      <summary><code><span class="bold">spec.models.account_spec:</span> Account#maximum_jobs_added_by_pipeline_changer returns 250 by default</code></summary>\n
       <p>expected: 250 got: 500 (compared using eql?)</p>\n
       <pre><code>First line of failure output
             Second line of failure output</code></pre>\n
+      </details>
+    OUTPUT
+
+    assert_equal 64, status.exitstatus
+  end
+
+  it "handles XML files with rspec ANSI output" do
+    output, status = Open3.capture2e("env", "BUILDKITE_PLUGIN_JUNIT_ANNOTATE_TERMINAL_MESSAGE=true",
+                                     "#{__dir__}/../bin/annotate", "#{__dir__}/rspec-output/")
+
+    assert_equal <<~OUTPUT, output
+      Parsing junit.xml
+      --- ✍️ Preparing annotation
+      1 testcases found
+      There is 1 failure/error 😭
+      <table>
+      <tr>
+        <th class=\"green\">Testcases</th>
+        <th class=\"red\">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      </table>
+      <br>
+      <details>
+      <summary><code><span class="bold">spec.services.order_confirmer_spec:</span> OrderConfirmer returns correct PayPal notify_url</code></summary>
+
+      <p>expected: "/order/paypa_notify?utm_nooverride=1"
+           got: "/order/paypal_notify?utm_nooverride=1"
+
+      (compared using ==)</p>
+
+      <pre class="term"><code>Failure&#47;Error: <span class=\"term-fg32\">expect</span>(result[<span class=\"term-fg33\">:result</span>][<span class=\"term-fg33\">:data</span>][<span class=\"term-fg31 term-fg1\">&quot;</span><span class=\"term-fg31\">transactions</span><span class=\"term-fg31 term-fg1\">&quot;</span>][<span class=\"term-fg34 term-fg1\">0</span>][<span class=\"term-fg31 term-fg1\">&quot;</span><span class=\"term-fg31\">notify_url</span><span class=\"term-fg31 term-fg1\">&quot;</span>]).to eq(<span class=\"term-fg31 term-fg1\">&quot;</span><span class=\"term-fg31\">&#47;order&#47;paypa_notify?utm_nooverride=1</span><span class=\"term-fg31 term-fg1\">&quot;</span>)
+      &nbsp;
+      expected: &quot;&#47;order&#47;paypa_notify?utm_nooverride=1&quot;
+            got: &quot;&#47;order&#47;paypal_notify?utm_nooverride=1&quot;
+      &nbsp;
+      (compared using ==)
+      .&#47;spec&#47;services&#47;order_confirmer_spec.rb:22:in `block (2 levels) in &lt;main&gt;&#39;</code></pre>
+
       </details>
     OUTPUT
 
@@ -420,7 +574,19 @@ describe "Junit annotate plugin parser" do
       8 testcases found
       There were no failures/errors 🙌
       Reporting slowest tests ⏱
-      **8 testcases and no failures:**\n
+      <table>
+      <tr>
+        <th class="green">Testcases</th>
+        <th class="red">Failures</th>
+        <th>Errors</th>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      </table>
+      <br>
       <details>
       <summary>5 slowest tests</summary>\n
       <table>

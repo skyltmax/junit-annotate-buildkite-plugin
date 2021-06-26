@@ -24,6 +24,8 @@ configuration:
       type: boolean
     skip-message:
       type: boolean
+    terminal-message:
+      type: boolean
   required:
     - artifacts
   additionalProperties: false

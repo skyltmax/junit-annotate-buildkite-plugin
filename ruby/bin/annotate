@@ -4,6 +4,7 @@
 require "rexml/document"
 require "rexml/element"
 require "cgi/util"
+require "tempfile"
 
 # Reads a list of junit files and returns a nice Buildkite build annotation on
 # STDOUT that summarizes any failures.
@@ -21,7 +22,8 @@ failure_format = ENV["BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAILURE_FORMAT"]
 failure_format = "classname" if !failure_format || failure_format.empty?
 
 report_slowest = ENV["BUILDKITE_PLUGIN_JUNIT_ANNOTATE_REPORT_SLOWEST"].to_i
-skip_message = ENV["BUILDKITE_PLUGIN_JUNIT_ANNOTATE_SKIP_CHECKOUT"] == "true"
+skip_message = ENV["BUILDKITE_PLUGIN_JUNIT_ANNOTATE_SKIP_MESSAGE"] == "true"
+terminal_message = ENV["BUILDKITE_PLUGIN_JUNIT_ANNOTATE_TERMINAL_MESSAGE"] == "true"
 
 Failure = Struct.new(:name, :unit_name, :body, :job, :type, :message)
 
@@ -87,30 +89,36 @@ end
 failures_count = failures.count { |f| f.type == :failure }
 errors_count = failures.count { |f| f.type == :error }
 
-summary = ["#{testcases} testcases"]
-
-if failures_count > 0
-  summary.push(failures_count == 1 ? "1 failure" : "#{failures_count} failures")
-end
-
-if errors_count > 0
-  summary.push(errors_count == 1 ? "1 error" : "#{errors_count} errors")
-end
-
-summary.push("no failures") if failures_count == 0 && errors_count == 0
-
-summary[-1] = "and #{summary[-1]}" if summary.length > 2
-summary = summary.length > 2 ? summary.join(", ") : summary.join(" and ")
-
-colon = failures_count > 0 || errors_count > 0 || report_slowest > 0 ? ":" : ""
-
-puts "**#{summary}#{colon}**\n\n"
+puts <<~TABLE
+  <table>
+  <tr>
+    <th class="green">Testcases</th>
+    <th class="red">Failures</th>
+    <th>Errors</th>
+  </tr>
+  <tr>
+    <td>#{testcases}</td>
+    <td>#{failures_count}</td>
+    <td>#{errors_count}</td>
+  </tr>
+  </table>
+  <br>
+TABLE
 
 failures.each do |failure|
   puts "<details>"
-  puts "<summary><code>#{failure.unit_name}: #{failure.name}</code></summary>\n\n"
+  puts "<summary><code><span class=\"bold\">#{failure.unit_name}:</span> #{failure.name}</code></summary>\n\n"
   puts "<p>#{failure.message.chomp.strip}</p>\n\n" if failure.message && !skip_message
-  puts "<pre><code>#{CGI.escapeHTML(failure.body.chomp.strip)}</code></pre>\n\n" if failure.body
+  if failure.body
+    if terminal_message
+      file = Tempfile.new("body")
+      file.write(failure.body.chomp.strip)
+      file.close
+      puts "<pre class=\"term\"><code>#{`cat #{file.path} | terminal-to-html`}</code></pre>\n\n"
+    else
+      puts "<pre><code>#{CGI.escapeHTML(failure.body.chomp.strip)}</code></pre>\n\n"
+    end
+  end
   puts "in <a href=\"##{failure.job}\">Job ##{failure.job}</a>" if failure.job
   puts "</details>"
   puts "" unless failure == failures.last
