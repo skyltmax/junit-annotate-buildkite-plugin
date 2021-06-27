@@ -102,10 +102,10 @@ puts <<~TABLE
     <td>#{errors_count}</td>
   </tr>
   </table>
-  <br>
 TABLE
 
 failures.each do |failure|
+  puts "<br>"
   puts "<details>"
   puts "<summary><code><span class=\"bold\">#{failure.unit_name}:</span> #{failure.name}</code></summary>\n\n"
   puts "<p>#{failure.message.chomp.strip}</p>\n\n" if failure.message && !skip_message
