@@ -6,6 +6,9 @@ require "rexml/element"
 require "cgi/util"
 require "tempfile"
 
+# default 10_240
+REXML::Document.entity_expansion_text_limit = 10_240 * 10
+
 # Reads a list of junit files and returns a nice Buildkite build annotation on
 # STDOUT that summarizes any failures.
 
@@ -104,7 +107,7 @@ puts <<~TABLE
   </table>
 TABLE
 
-puts "<br>" if failures.length > 0
+puts "<br>" unless failures.empty?
 
 failures.each do |failure|
   puts "<details>"
